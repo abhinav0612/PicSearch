@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Pic Search</string>
+    <string-array name="image_type">
+        <item>All</item>
+        <item>Photo</item>
+        <item>Vector</item>
+        <item>Illustration</item>
+    </string-array>
+    <string-array name="category">
+        <item>All</item>
+        <item>Fashion</item>
+        <item>Nature</item>
+        <item>Science</item>
+        <item>Animals</item>
+        <item>Transportation</item>
+        <item>Sports</item>
+        <item>Music</item>
+        <item>People</item>
+        <item>Feelings</item>
+        <item>Places</item>
+    </string-array>
+    <string-array name="editor_choice">
+        <item>False</item>
+        <item>True</item>
+    </string-array>
+    <string-array name="order_list">
+        <item>Popular</item>
+        <item>Latest</item>
+    </string-array>
+</resources>
