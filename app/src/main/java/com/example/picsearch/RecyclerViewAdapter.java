@@ -1,12 +1,14 @@
 package com.example.picsearch;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,11 +37,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         Hits hits = mList.get(position);
-        String url = hits.getWebformatURL();
-        Log.d("_______","url : " + url);
-        Picasso.get().load(url).into(holder.imageView);
+        String weburl = hits.getWebformatURL();
+        final String largeUrl = hits.getLargeImageURL();
+        final Integer downloads=hits.getDownloads();
+        final Integer likes=hits.getLikes();
+        Log.d("_______","url : " + largeUrl);
+        Picasso.get().load(weburl).into(holder.imageView);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(context,ImageSelected.class);
+                intent1.putExtra("url",largeUrl);
+                intent1.putExtra("downloads",downloads);
+                intent1.putExtra("likes",likes);
+                context.startActivity(intent1);
+            }
+        });
     }
 
     @Override

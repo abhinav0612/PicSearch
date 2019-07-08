@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212121"
     tools:context=".MainActivity">
 
     <EditText
@@ -11,16 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:backgroundTint="#FF9800"
         android:layout_marginStart="8dp"
         android:layout_marginTop="45dp"
-        android:hint="search"
+        android:textColor="#9E9E9E"
+        android:hint="Search"
         android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Spinner
         android:id="@+id/spinner1"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
         android:layout_marginTop="40dp"
@@ -29,10 +32,9 @@
 
     <Spinner
         android:id="@+id/spinner2"
-        android:layout_width="wrap_content"
-
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="230dp"
+        android:layout_marginStart="190dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="48dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +43,7 @@
 
     <Spinner
         android:id="@+id/spinner3"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
         android:layout_marginTop="40dp"
@@ -50,9 +52,10 @@
 
     <Spinner
         android:id="@+id/spinner4"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="190dp"
+        android:popupBackground="#CFD8DC"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="48dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,9 +66,9 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
+        android:layout_marginStart="170dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="191dp"
+        android:layout_marginEnd="170dp"
         android:layout_marginBottom="45dp"
         app:layout_constraintBottom_toTopOf="@+id/et_search"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,9 +81,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="149dp"
+        android:background="#FF9800"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="174dp"
         android:text="@android:string/search_go"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_search" />

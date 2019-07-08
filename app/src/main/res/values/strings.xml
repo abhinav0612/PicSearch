@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">Pic Search</string>
     <string-array name="image_type">
+        <item>Image Type</item>
         <item>All</item>
         <item>Photo</item>
         <item>Vector</item>
         <item>Illustration</item>
     </string-array>
     <string-array name="category">
+        <item>Categories</item>
         <item>All</item>
         <item>Fashion</item>
         <item>Nature</item>
@@ -20,10 +22,12 @@
         <item>Places</item>
     </string-array>
     <string-array name="editor_choice">
+        <item>Editors Choice</item>
         <item>False</item>
         <item>True</item>
     </string-array>
     <string-array name="order_list">
+        <item>Order By</item>
         <item>Popular</item>
         <item>Latest</item>
     </string-array>

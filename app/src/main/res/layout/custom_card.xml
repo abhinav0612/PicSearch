@@ -5,6 +5,8 @@
     app:cardCornerRadius="5dp"
     android:layout_margin="3dp"
     app:cardElevation="@dimen/cardview_default_elevation"
+    app:cardBackgroundColor="#212121"
+    android:elevation="10dp"
     android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/card_imageView"

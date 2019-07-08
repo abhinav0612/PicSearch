@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        searchText.setText(intent.getStringExtra("query"));
+
     }
 
 
@@ -61,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spinner1.getItemAtPosition(position).toString().equals("Categories"))
+                {
+                    category="all";
+                    return;
+                }
                 category= spinner1.getItemAtPosition(position).toString().toLowerCase();
                 Log.e("________","category :  " + category);
 
@@ -80,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spinner2.getItemAtPosition(position).toString().equals("Image Type"))
+                {
+                    type= "photo";
+                    return;
+                }
                 type= spinner2.getItemAtPosition(position).toString().toLowerCase();
                 Log.e("________","type : " + type);
 
@@ -98,6 +111,11 @@ public class MainActivity extends AppCompatActivity {
         spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spinner3.getItemAtPosition(position).toString().equals("Order By"))
+                {
+                    order= "popular";
+                    return;
+                }
                 order= spinner3.getItemAtPosition(position).toString().toLowerCase();
                 Log.e("________","order : " +order);
             }
@@ -117,6 +135,11 @@ public class MainActivity extends AppCompatActivity {
         spinner4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spinner4.getItemAtPosition(position).toString().equals("Editors Choice"))
+                {
+                    editor_choice= "false";
+                    return;
+                }
                 editor_choice= spinner4.getItemAtPosition(position).toString().toLowerCase();
                 Log.e("________","editor choice : " + editor_choice);
             }

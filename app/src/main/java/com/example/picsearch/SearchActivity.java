@@ -1,15 +1,26 @@
 package com.example.picsearch;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,26 +38,30 @@ public class SearchActivity extends AppCompatActivity {
     Retrofit retrofit;
     RecyclerViewAdapter adapter;
     Map map;
+    Button filter_button;
     RecyclerView recyclerView;
-    TextView currentSearch;
+    EditText currentSearch;
     API_Interface api_interface;
+    ImageButton imageButton;
     ArrayList<Hits> mHits = new ArrayList<>();
     final String API = "12961328-7a7e65a6d263338514a2f3f47";
     ArrayList<Hits> sampleHits = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
-        currentSearch = findViewById(R.id.tv_currentsearch);
+        filter_button = findViewById(R.id.button_filter);
+        imageButton = findViewById(R.id.imageButton_search);
+        currentSearch = findViewById(R.id.et_currentsearch);
         recyclerView = findViewById(R.id.recyclerview);
+        closeKeyboard();
+
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://pixabay.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api_interface = retrofit.create(API_Interface.class);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         String category =  intent.getStringExtra("category");
         String order =  intent.getStringExtra("order");
         String query =  intent.getStringExtra("searchQuery");
@@ -60,13 +75,27 @@ public class SearchActivity extends AppCompatActivity {
         map.put("category",category);
         map.put("image_type",type);
         map.put("editors_choice",editor_choice);
+        map.put("per_page","30");
         MyasyncTask myasyncTask = new MyasyncTask();
-        myasyncTask.execute();
+        myasyncTask.execute(map);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageSearch();
+            }
+        });
 
-
+        filter_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(SearchActivity.this,MainActivity.class);
+                intent1.putExtra("query",currentSearch.getText().toString().trim());
+                startActivity(intent1);
+            }
+        });
 
     }
-    private class MyasyncTask extends AsyncTask<Void,Void,Void>
+    private class MyasyncTask extends AsyncTask<Map,Void,Void>
     {
         @Override
         protected void onPreExecute() {
@@ -76,9 +105,10 @@ public class SearchActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
         }
 
+
         @Override
-        protected Void doInBackground(Void... voids) {
-            Call<Pixabay> call = api_interface.getImages(map);
+        protected Void doInBackground(Map... maps) {
+            Call<Pixabay> call = api_interface.getImages(maps[0]);
             call.enqueue(new Callback<Pixabay>() {
                 @Override
                 public void onResponse(Call<Pixabay> call, Response<Pixabay> response) {
@@ -103,5 +133,31 @@ public class SearchActivity extends AppCompatActivity {
             return null;
         }
 
+
+    }
+    void ImageSearch()
+    {
+        retrofit = new Retrofit.Builder()
+                .baseUrl("https://pixabay.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        api_interface = retrofit.create(API_Interface.class);
+        map.clear();
+        map.put("key",API);
+        map.put("q",currentSearch.getText().toString().trim());
+        map.put("category","all");
+        map.put("image_type","photo");
+        map.put("per_page","30");
+        MyasyncTask task = new MyasyncTask();
+        task.execute(map);
+
+    }
+    void closeKeyboard()
+    {
+        View view = this.getCurrentFocus();
+        if (view!=null){
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
     }
 }
