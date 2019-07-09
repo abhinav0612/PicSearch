@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                UIUtil.hideKeyboard(MainActivity.this);
                 String searchQuery = searchText.getText().toString().trim();
                 searchQuery = searchQuery.replaceAll(" ","+");
                 Log.e("__________","quest : " + searchQuery);

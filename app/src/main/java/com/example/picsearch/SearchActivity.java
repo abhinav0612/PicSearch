@@ -23,6 +23,8 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +56,6 @@ public class SearchActivity extends AppCompatActivity {
         imageButton = findViewById(R.id.imageButton_search);
         currentSearch = findViewById(R.id.et_currentsearch);
         recyclerView = findViewById(R.id.recyclerview);
-        closeKeyboard();
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://pixabay.com/")
@@ -75,7 +76,7 @@ public class SearchActivity extends AppCompatActivity {
         map.put("category",category);
         map.put("image_type",type);
         map.put("editors_choice",editor_choice);
-        map.put("per_page","30");
+        map.put("per_page","100");
         MyasyncTask myasyncTask = new MyasyncTask();
         myasyncTask.execute(map);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +92,8 @@ public class SearchActivity extends AppCompatActivity {
                 Intent intent1 = new Intent(SearchActivity.this,MainActivity.class);
                 intent1.putExtra("query",currentSearch.getText().toString().trim());
                 startActivity(intent1);
+                UIUtil.hideKeyboard(getApplicationContext(),currentSearch);
+            // UIUtil.hideKeyboard(SearchActivity.this,currentSearch);
             }
         });
 
@@ -103,6 +106,8 @@ public class SearchActivity extends AppCompatActivity {
             adapter = new RecyclerViewAdapter(SearchActivity.this,sampleHits);
             recyclerView.setLayoutManager(new GridLayoutManager(SearchActivity.this,2));
             recyclerView.setAdapter(adapter);
+
+
         }
 
 
@@ -116,7 +121,7 @@ public class SearchActivity extends AppCompatActivity {
                     {
                         Log.d("_____________","Error : " + response.code());
                     }
-                    mHits = response.body().getHits();
+                    mHits=response.body().getHits();
                     adapter = new RecyclerViewAdapter(SearchActivity.this,mHits);
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
@@ -147,17 +152,10 @@ public class SearchActivity extends AppCompatActivity {
         map.put("q",currentSearch.getText().toString().trim());
         map.put("category","all");
         map.put("image_type","photo");
-        map.put("per_page","30");
+        map.put("per_page","100");
         MyasyncTask task = new MyasyncTask();
         task.execute(map);
 
     }
-    void closeKeyboard()
-    {
-        View view = this.getCurrentFocus();
-        if (view!=null){
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(),0);
-        }
-    }
+
 }
