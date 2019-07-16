@@ -1,13 +1,16 @@
 package com.example.picsearch;
 
+import androidx.lifecycle.LiveData;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Pixabay {
     private String total;
     private String totalHits;
-    private ArrayList<Hits> hits;
+    private List<Hits> hits;
 
-    public Pixabay(String total, String totalHits, ArrayList<Hits> hits) {
+    public Pixabay(String total, String totalHits, List<Hits> hits) {
         this.total = total;
         this.totalHits = totalHits;
         this.hits = hits;
@@ -29,11 +32,11 @@ public class Pixabay {
         this.totalHits = totalHits;
     }
 
-    public ArrayList<Hits> getHits() {
+    public List<Hits> getHits() {
         return hits;
     }
 
-    public void setHits(ArrayList<Hits> hits) {
+    public void setHits(List<Hits> hits) {
         this.hits = hits;
     }
 }

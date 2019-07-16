@@ -20,9 +20,9 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private Context context;
-    private ArrayList<Hits> mList;
+    private List<Hits> mList;
 
-    public RecyclerViewAdapter(Context context, ArrayList<Hits> mList) {
+    public RecyclerViewAdapter(Context context, List<Hits> mList) {
         this.context = context;
         this.mList = mList;
     }
@@ -41,6 +41,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Hits hits = mList.get(position);
         String weburl = hits.getWebformatURL();
         final String largeUrl = hits.getLargeImageURL();
+        final String showUrl = hits.getWebformatURL();
         final Integer downloads=hits.getDownloads();
         final Integer likes=hits.getLikes();
         Log.d("_______","url : " + largeUrl);
@@ -50,6 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View v) {
                 Intent intent1 = new Intent(context,ImageSelected.class);
                 intent1.putExtra("url",largeUrl);
+                intent1.putExtra("showUrl",showUrl);
                 intent1.putExtra("downloads",downloads);
                 intent1.putExtra("likes",likes);
                 context.startActivity(intent1);

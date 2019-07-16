@@ -14,6 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ImageSelected"></activity>
         <activity android:name=".SearchActivity"
+            android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".MainActivity">
             <intent-filter>
