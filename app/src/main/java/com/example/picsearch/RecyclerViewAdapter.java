@@ -39,13 +39,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         Hits hits = mList.get(position);
-        String weburl = hits.getWebformatURL();
+        String weburl = hits.getPreviewURL();
         final String largeUrl = hits.getLargeImageURL();
         final String showUrl = hits.getWebformatURL();
         final Integer downloads=hits.getDownloads();
         final Integer likes=hits.getLikes();
         Log.d("_______","url : " + largeUrl);
-        Picasso.get().load(weburl).into(holder.imageView);
+        Picasso.get().load(showUrl).into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

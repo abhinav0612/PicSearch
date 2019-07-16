@@ -15,30 +15,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_margin="4dp"
-                android:layout_marginTop="8dp"
-                android:layout_height="450dp"
+                android:id="@+id/cardViewImageSelected"
+                android:layout_width="393dp"
+                android:layout_height="327dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
                 app:cardBackgroundColor="#212121"
-                app:cardElevation="10dp"
                 app:cardCornerRadius="8dp"
-                android:id="@+id/cardViewImageSelected">
+                app:cardElevation="10dp">
+
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:foregroundGravity="center_horizontal"
-                    android:layout_height="match_parent"
+                    android:id="@+id/imageViewLarge"
+                    android:layout_width="382dp"
+                    android:layout_height="306dp"
                     android:layout_margin="8dp"
-                    android:id="@+id/imageViewLarge"/>
+                    android:foregroundGravity="center_horizontal" />
             </androidx.cardview.widget.CardView>
+
             <ImageView
+                android:id="@+id/imagelikes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:src="@drawable/ic_likes"
-                android:id="@+id/imagelikes"
+                android:layout_below="@id/cardViewImageSelected"
 
-                android:layout_below="@id/cardViewImageSelected"/>
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/ic_likes" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_margin="8dp"
@@ -48,16 +58,18 @@
                 android:layout_below="@id/imagelikes"/>
 
             <TextView
+                android:id="@+id/likes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cardViewImageSelected"
-                android:layout_margin="8dp"
-                android:text="Likes"
-                android:id="@+id/likes"
-                android:textColor="#9E9E9E"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
 
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:layout_toRightOf="@id/imagelikes"
-                />
+                android:text="Likes"
+                android:textColor="#9E9E9E" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_below="@id/imagelikes"

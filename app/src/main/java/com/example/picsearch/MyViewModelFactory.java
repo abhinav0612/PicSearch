@@ -1,3 +1,4 @@
+/*
 package com.example.picsearch;
 
 import android.app.Application;
@@ -8,9 +9,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 public class MyViewModelFactory extends ViewModelProvider.AndroidViewModelFactory {
-    /**
+    */
+/**
      * Creates a {@code AndroidViewModelFactory}
-     **/
+     **//*
+
 
     private Application context;
     private String category;
@@ -36,3 +39,4 @@ public class MyViewModelFactory extends ViewModelProvider.AndroidViewModelFactor
                             ,editor_choice,orderBy,query);
     }
 }
+*/
