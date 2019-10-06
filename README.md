@@ -1,5 +1,5 @@
 # PicSearch
-Pic Search is an app with feature like sharing and downloading.
+Pic Search is an application with feature like sharing and downloading images.
 
 
 
