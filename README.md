@@ -1,5 +1,6 @@
 # PicSearch
 Pic Search is an application with feature like sharing and downloading images.
+Retrofit is used for fetching the images from an open source image API. DownloadManager is used for saving the images to the local directory.
 
 
 
